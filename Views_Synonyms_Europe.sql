@@ -1,35 +1,59 @@
+CREATE SYNONYM Clients_Europe_Du_Sud 
+FOR mvieiraper.Clients_Europe_Du_Sud;
+
+CREATE SYNONYM Clients_Ameriques
+FOR mvieiraper.Clients_Ameriques;
+
+CREATE SYNONYM Commandes_Europe_Du_Sud
+FOR mvieiraper.Commandes_Europe_Du_Sud;
+
+CREATE SYNONYM Commandes_Ameriques
+FOR mvieiraper.Commandes_Ameriques;
+
+CREATE SYNONYM Details_Commandes_Europe_Du_Sud
+FOR mvieiraper.Details_Commandes_Europe_Du_Sud;
+
+CREATE SYNONYM Details_Commandes_Ameriques
+FOR mvieiraper.Details_Commandes_Ameriques;
+
+CREATE SYNONYM Stock_Europe_Du_Sud
+FOR mvieiraper.Stock_Europe_Du_Sud;
+
+CREATE SYNONYM Stock_Ameriques
+FOR mvieiraper.Stock_Ameriques;
+
 CREATE OR REPLACE VIEW Clients AS
 SELECT * FROM Clients_Europe_Du_Nord
 UNION
 SELECT * FROM Clients_Autres
 UNION
-SELECT * FROM mvieiraper.Clients_Europe_Du_Sud
+SELECT * FROM Clients_Europe_Du_Sud
 UNION
-SELECT * FROM mvieiraper.Clients_Ameriques;
+SELECT * FROM Clients_Ameriques;
 
 CREATE OR REPLACE VIEW Commandes AS
 SELECT * FROM Commandes_Europe_Du_Nord
 UNION
 SELECT * FROM Commandes_Autres
 UNION
-SELECT * FROM mvieiraper.Commandes_Europe_Du_Sud
+SELECT * FROM Commandes_Europe_Du_Sud
 UNION
-SELECT * FROM mvieiraper.Commandes_Ameriques;
+SELECT * FROM Commandes_Ameriques;
 
 CREATE OR REPLACE VIEW Details_Commandes AS
 SELECT * FROM Details_Commandes_Europe_Du_Nord
 UNION
 SELECT * FROM Details_Commandes_Autres
 UNION
-SELECT * FROM mvieiraper.Details_Commandes_Europe_Du_Sud
+SELECT * FROM Details_Commandes_Europe_Du_Sud
 UNION
-SELECT * FROM mvieiraper.Details_Commandes_Ameriques;
+SELECT * FROM Details_Commandes_Ameriques;
 
 CREATE OR REPLACE VIEW Stock AS
 SELECT * FROM Stock_Europe_Du_Nord
 UNION
 SELECT * FROM Stock_Autres
 UNION
-SELECT * FROM mvieiraper.Stock_Europe_Du_Sud
+SELECT * FROM Stock_Europe_Du_Sud
 UNION
-SELECT * FROM mvieiraper.Stock_Ameriques;
+SELECT * FROM Stock_Ameriques;
