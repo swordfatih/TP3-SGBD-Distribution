@@ -1,10 +1,6 @@
 -- clés primaires
-ALTER TABLE Fournisseurs_Europe_Du_Nord
-ADD CONSTRAINT PK_Fournisseurs_Europe_Du_Nord
-PRIMARY KEY (NO_FOURNISSEUR);
-
-ALTER TABLE Fournisseurs_Autres
-ADD CONSTRAINT PK_Fournisseurs_Autres
+ALTER TABLE Fournisseurs
+ADD CONSTRAINT PK_Fournisseurs
 PRIMARY KEY (NO_FOURNISSEUR);
 
 ALTER TABLE Stock_Europe_Du_Nord 
@@ -161,7 +157,7 @@ END;
 
 -- clés étrangères externes Details Commandes vers Produits
 CREATE OR REPLACE TRIGGER T_FK_Details_Commandes_Europe_Du_Nord_Produits
-BEFORE INSERT OR UPDATE ON Stock_Europe_Du_Nord
+BEFORE INSERT OR UPDATE ON Details_Commandes_Europe_Du_Nord
 FOR EACH ROW
 DECLARE
    CURSOR Curseur_Produits IS
@@ -175,6 +171,43 @@ BEGIN
 
    IF count = 0 THEN
       RAISE_APPLICATION_ERROR(-20001, 'L employé n existe pas');
+   END IF;
+END;
+
+CREATE OR REPLACE TRIGGER T_FK_Details_Commandes_Autres_Produits
+BEFORE INSERT OR UPDATE ON Details_Commandes_Autres
+FOR EACH ROW
+DECLARE
+   CURSOR Curseur_Produits IS
+      SELECT REF_PRODUIT
+      FROM Produits;
+   count INT;
+BEGIN
+   SELECT COUNT(*) INTO count
+   FROM Curseur_Produits
+   WHERE REF_PRODUIT = :NEW.REF_PRODUIT;
+
+   IF count = 0 THEN
+      RAISE_APPLICATION_ERROR(-20001, 'L employé n existe pas');
+   END IF;
+END;
+
+-- contrainte suppression de fournisseur
+CREATE OR REPLACE TRIGGER T_FK_Fournisseurs_Produits
+BEFORE DELETE ON Fournisseurs
+FOR EACH ROW
+DECLARE
+   CURSOR Curseur_Produits IS
+      SELECT NO_FOURNISSEUR
+      FROM Produits;
+   count INT;
+BEGIN
+   SELECT COUNT(*) INTO count
+   FROM Curseur_Produits
+   WHERE NO_FOURNISSEUR = :OLD.NO_FOURNISSEUR;
+
+   IF count > 0 THEN
+      RAISE_APPLICATION_ERROR(-20001, 'Le fournisseur est utilisé');
    END IF;
 END;
 

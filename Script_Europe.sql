@@ -103,6 +103,9 @@ FOR mvieiraper.Stock_Amerique@L_Ameriques;
 CREATE OR REPLACE SYNONYM Employes
 FOR mvieiraper.Employes@L_Ameriques;
 
+CREATE OR REPLACE SYNONYM Produits
+FOR mvieiraper.Produits@L_Ameriques;
+
 CREATE OR REPLACE VIEW Clients AS
 SELECT * FROM Clients_Europe_Du_Nord
 UNION ALL
