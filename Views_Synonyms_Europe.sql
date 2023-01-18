@@ -23,30 +23,37 @@ CREATE SYNONYM Stock_Ameriques
 FOR mvieiraper.Stock_Ameriques@L_Ameriques;
 
 CREATE OR REPLACE VIEW Clients AS
-    SELECT * 
-    FROM Clients_Europe_Du_Nord
-    NATURAL FULL OUTER JOIN Clients_Autres
-    NATURAL FULL OUTER JOIN Clients_Europe_Du_Sud
-    NATURAL FULL OUTER JOIN Clients_Ameriques;
+SELECT * FROM Clients_Europe_Du_Nord
+UNION ALL
+SELECT * FROM Clients_Autres
+UNION ALL
+SELECT * FROM Clients_Europe_Du_Sud
+UNION ALL
+SELECT * FROM Clients_Ameriques;
 
 CREATE OR REPLACE VIEW Commandes AS
-    SELECT * 
-    FROM Commandes_Europe_Du_Nord
-    NATURAL FULL OUTER JOIN Commandes_Autres
-    NATURAL FULL OUTER JOIN Commandes_Europe_Du_Sud
-    NATURAL FULL OUTER JOIN Commandes_Ameriques;
+SELECT * FROM Commandes_Europe_Du_Nord
+UNION ALL
+SELECT * FROM Commandes_Autres
+UNION ALL
+SELECT * FROM Commandes_Europe_Du_Sud
+UNION ALL
+SELECT * FROM Commandes_Ameriques;
 
 CREATE OR REPLACE VIEW Details_Commandes AS
-    SELECT * 
-    FROM Details_Commandes_Europe_Du_Nord
-    NATURAL FULL OUTER JOIN Details_Commandes_Autres
-    NATURAL FULL OUTER JOIN Details_Commandes_Europe_Du_Sud
-    NATURAL FULL OUTER JOIN Details_Commandes_Ameriques;
+SELECT * FROM Details_Commandes_Europe_Du_Nord
+UNION ALL
+SELECT * FROM Details_Commandes_Autres
+UNION ALL
+SELECT * FROM Details_Commandes_Europe_Du_Sud
+UNION ALL
+SELECT * FROM Details_Commandes_Ameriques;
 
 CREATE OR REPLACE VIEW Stock AS
-    SELECT * 
-    FROM Stock_Europe_Du_Nord
-    NATURAL FULL OUTER JOIN Stock_Autres
-    NATURAL FULL OUTER JOIN Stock_Europe_Du_Sud
-    NATURAL FULL OUTER JOIN Stock_Ameriques;
-
+SELECT * FROM Stock_Europe_Du_Nord
+UNION ALL
+SELECT * FROM Stock_Autres
+UNION ALL
+SELECT * FROM Stock_Europe_Du_Sud
+UNION ALL
+SELECT * FROM Stock_Ameriques;
