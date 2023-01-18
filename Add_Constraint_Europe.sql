@@ -47,14 +47,24 @@ ALTER TABLE Stock_Autres
 ADD CONSTRAINT FK_Stock_Autres
 FOREIGN KEY (REF_PRODUIT)
 REFERENCES PRODUITS(REF_PRODUIT);
- 
--- CREATE OR REPLACE FK_EMPLOYES
--- BEFORE INSERT OR UPDATE ON Commandes
--- FOR EACH ROW 
--- DECLARE 
-   -- CURSOR Curs_NO_EMPLOYE IS 
-   -- SELECT NO_EMPLOYE
-   -- FROM 
+
+CREATE OR REPLACE TRIGGER FK_EMPLOYES
+BEFORE INSERT OR UPDATE ON Commandes
+FOR EACH ROW
+DECLARE
+   CURSOR Curseur_Employe IS
+      SELECT NO_EMPLOYE
+      FROM Employes;
+   count INT;
+BEGIN
+   SELECT COUNT(*) INTO count
+   FROM Curseur_Employe
+   WHERE NO_EMPLOYE = :NEW.NO_EMPLOYE;
+
+   IF count = 0 THEN
+      RAISE_APPLICATION_ERROR(-20001, 'L employé n existe pas');
+   END IF;
+END;
 
 ALTER TABLE Clients_Europe_Du_Nord
 ADD CONSTRAINT CK_Code_Clients_Europe_Du_Nord
@@ -71,3 +81,4 @@ CHECK (PAYS IN ('Norvege', 'Suede', 'Danemark', 'Islande', 'Finlande', 'Royaume-
 ALTER TABLE Clients_Autres
 ADD CONSTRAINT CK_Pays_Clients_Autres
 CHECK (PAYS NOT IN ('Norvège', 'Suède', 'Danemark', 'Islande', 'Finlande', 'Royaume-Uni', 'Irlande', 'Belgique', 'Luxembourg', 'Pays-Bas', 'Allemagne', 'Pologne', 'Antigua-et-Barbuda', 'Argentine', 'Bahamas', 'Barbade', 'Belize', 'Bolivie', 'Bresil', 'Canada', 'Chili', 'Colombie', 'Costa Rica', 'Cuba', 'Republique dominicaine', 'Dominique', 'Equateur', 'Etats-Unis', 'Grenade', 'Guatemala', 'Guyana', 'Haiti', 'Honduras', 'Jamaique', 'Mexique', 'Nicaragua', 'Panama', 'Paraguay', 'Perou', 'Saint-Christophe-et-Nieves', 'Sainte-Lucie', 'Saint-Vincent-et-les Grenadines', 'Salvador', 'Suriname', 'Trinite-et-Tobago', 'Uruguay', 'Venezuela', 'Espagne', 'Portugal', 'Andorre', 'France', 'Gibraltar', 'Italie', 'Saint-Marin', 'Vatican', 'Malte', 'Albanie', 'Bosnie-Herzegovine', 'Croatie', 'Grece', 'Macedoine', 'Montenegro', 'Serbie', 'Slovenie', 'Bulgarie'));
+

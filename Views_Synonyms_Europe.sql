@@ -22,6 +22,9 @@ FOR mvieiraper.Stock_Europe_Du_Sud@L_Ameriques;
 CREATE SYNONYM Stock_Ameriques
 FOR mvieiraper.Stock_Ameriques@L_Ameriques;
 
+CREATE SYNONYM Employes
+FOR mvieiraper.Employes@L_Ameriques;
+
 CREATE OR REPLACE VIEW Clients AS
 SELECT * FROM Clients_Europe_Du_Nord
 UNION ALL
