@@ -138,4 +138,3 @@ UNION ALL
 SELECT * FROM Stock_Europe_Du_Sud
 UNION ALL
 SELECT * FROM Stock_Ameriques;
-
