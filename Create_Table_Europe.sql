@@ -55,13 +55,3 @@ CREATE TABLE Details_Commandes_Autres AS (
     SELECT NO_COMMANDE, REF_PRODUIT, PRIX_UNITAIRE, QUANTITE, REMISE
     FROM Ryori.Details_Commandes@L_DB11 NATURAL JOIN Commandes_Autres
 );
-
-GRANT SELECT, UPDATE, INSERT, DELETE ON Fournisseurs TO mvieiraper;
-GRANT SELECT, UPDATE, INSERT, DELETE ON Clients_Europe_Du_Nord TO mvieiraper;
-GRANT SELECT, UPDATE, INSERT, DELETE ON Clients_Autres TO mvieiraper;
-GRANT SELECT, UPDATE, INSERT, DELETE ON Commandes_Europe_Du_Nord TO mvieiraper;
-GRANT SELECT, UPDATE, INSERT, DELETE ON Commandes_Autres TO mvieiraper;
-GRANT SELECT, UPDATE, INSERT, DELETE ON Details_Commandes_Europe_Du_Nord TO mvieiraper;
-GRANT SELECT, UPDATE, INSERT, DELETE ON Details_Commandes_Autres TO mvieiraper;
-GRANT SELECT, UPDATE, INSERT, DELETE ON Stock_Europe_Du_Nord TO mvieiraper;
-GRANT SELECT, UPDATE, INSERT, DELETE ON Stock_Autres TO mvieiraper;
