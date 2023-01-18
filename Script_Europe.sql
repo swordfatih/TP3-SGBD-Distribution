@@ -76,17 +76,17 @@ CREATE TABLE Details_Commandes_Autres AS (
     FROM Ryori.Details_Commandes@L_Central NATURAL JOIN Commandes_Autres
 );
 
-CREATE SYNONYM Clients_Europe_Du_Sud 
+CREATE OR REPLACE SYNONYM Clients_Europe_Du_Sud 
 FOR mvieiraper.Clients_Europe_Du_Sud@L_Ameriques;
 
-CREATE SYNONYM Clients_Ameriques
-FOR mvieiraper.Clients_Ameriques@L_Ameriques;
+CREATE SYNONYM Clients_Amerique
+FOR mvieiraper.Clients_Amerique@L_Ameriques;
 
 CREATE SYNONYM Commandes_Europe_Du_Sud
 FOR mvieiraper.Commandes_Europe_Du_Sud@L_Ameriques;
 
-CREATE SYNONYM Commandes_Ameriques
-FOR mvieiraper.Commandes_Ameriques@L_Ameriques;
+CREATE SYNONYM Commandes_Amerique
+FOR mvieiraper.Commandes_Amerique@L_Ameriques;
 
 CREATE SYNONYM Details_Commandes_Europe_Du_Sud
 FOR mvieiraper.Details_Commandes_Europe_Du_Sud@L_Ameriques;
@@ -97,8 +97,8 @@ FOR mvieiraper.Details_Commandes_Ameriques@L_Ameriques;
 CREATE SYNONYM Stock_Europe_Du_Sud
 FOR mvieiraper.Stock_Europe_Du_Sud@L_Ameriques;
 
-CREATE SYNONYM Stock_Ameriques
-FOR mvieiraper.Stock_Ameriques@L_Ameriques;
+CREATE SYNONYM Stock_Amerique
+FOR mvieiraper.Stock_Amerique@L_Ameriques;
 
 CREATE SYNONYM Employes
 FOR mvieiraper.Employes@L_Ameriques;
@@ -110,7 +110,7 @@ SELECT * FROM Clients_Autres
 UNION ALL
 SELECT * FROM Clients_Europe_Du_Sud
 UNION ALL
-SELECT * FROM Clients_Ameriques;
+SELECT * FROM Clients_Amerique;
 
 CREATE OR REPLACE VIEW Commandes AS
 SELECT * FROM Commandes_Europe_Du_Nord
@@ -119,7 +119,7 @@ SELECT * FROM Commandes_Autres
 UNION ALL
 SELECT * FROM Commandes_Europe_Du_Sud
 UNION ALL
-SELECT * FROM Commandes_Ameriques;
+SELECT * FROM Commandes_Amerique;
 
 CREATE OR REPLACE VIEW Details_Commandes AS
 SELECT * FROM Details_Commandes_Europe_Du_Nord
@@ -128,7 +128,7 @@ SELECT * FROM Details_Commandes_Autres
 UNION ALL
 SELECT * FROM Details_Commandes_Europe_Du_Sud
 UNION ALL
-SELECT * FROM Details_Commandes_Ameriques;
+SELECT * FROM Details_Commandes_Amerique;
 
 CREATE OR REPLACE VIEW Stock AS
 SELECT * FROM Stock_Europe_Du_Nord
@@ -137,4 +137,4 @@ SELECT * FROM Stock_Autres
 UNION ALL
 SELECT * FROM Stock_Europe_Du_Sud
 UNION ALL
-SELECT * FROM Stock_Ameriques;
+SELECT * FROM Stock_Amerique;

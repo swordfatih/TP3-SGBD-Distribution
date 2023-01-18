@@ -85,7 +85,8 @@ ADD CONSTRAINT FK_Produits_Fournisseur
 FOREIGN KEY (NO_FOURNISSEUR)
 REFERENCES Fournisseurs(NO_FOURNISSEUR);
 
-CREATE OR REPLACE TRIGGER FK_EMPLOYES
+-- clés étrangères externes Commandes vers Employes
+CREATE OR REPLACE TRIGGER T_FK_Commandes_Europe_Du_Nord_Employes
 BEFORE INSERT OR UPDATE ON Commandes_Europe_Du_Nord
 FOR EACH ROW
 DECLARE
@@ -103,7 +104,7 @@ BEGIN
    END IF;
 END;
 
-CREATE OR REPLACE TRIGGER FK_EMPLOYES
+CREATE OR REPLACE TRIGGER T_FK_Commandes_Autres_Employes
 BEFORE INSERT OR UPDATE ON Commandes_Autres
 FOR EACH ROW
 DECLARE
@@ -121,6 +122,63 @@ BEGIN
    END IF;
 END;
 
+-- clés étrangères externes Stock vers Produits
+CREATE OR REPLACE TRIGGER T_FK_Stock_Europe_Du_Nord_Produits
+BEFORE INSERT OR UPDATE ON Stock_Europe_Du_Nord
+FOR EACH ROW
+DECLARE
+   CURSOR Curseur_Produits IS
+      SELECT REF_PRODUIT
+      FROM Produits;
+   count INT;
+BEGIN
+   SELECT COUNT(*) INTO count
+   FROM Curseur_Produits
+   WHERE REF_PRODUIT = :NEW.REF_PRODUIT;
+
+   IF count = 0 THEN
+      RAISE_APPLICATION_ERROR(-20001, 'L employé n existe pas');
+   END IF;
+END;
+
+CREATE OR REPLACE TRIGGER T_FK_Stock_Autres_Produits
+BEFORE INSERT OR UPDATE ON Stock_Autres
+FOR EACH ROW
+DECLARE
+   CURSOR Curseur_Produits IS
+      SELECT REF_PRODUIT
+      FROM Produits;
+   count INT;
+BEGIN
+   SELECT COUNT(*) INTO count
+   FROM Curseur_Produits
+   WHERE REF_PRODUIT = :NEW.REF_PRODUIT;
+
+   IF count = 0 THEN
+      RAISE_APPLICATION_ERROR(-20001, 'L employé n existe pas');
+   END IF;
+END;
+
+-- clés étrangères externes Details Commandes vers Produits
+CREATE OR REPLACE TRIGGER T_FK_Details_Commandes_Europe_Du_Nord_Produits
+BEFORE INSERT OR UPDATE ON Stock_Europe_Du_Nord
+FOR EACH ROW
+DECLARE
+   CURSOR Curseur_Produits IS
+      SELECT REF_PRODUIT
+      FROM Produits;
+   count INT;
+BEGIN
+   SELECT COUNT(*) INTO count
+   FROM Curseur_Produits
+   WHERE REF_PRODUIT = :NEW.REF_PRODUIT;
+
+   IF count = 0 THEN
+      RAISE_APPLICATION_ERROR(-20001, 'L employé n existe pas');
+   END IF;
+END;
+
+-- contraintes de domaine
 ALTER TABLE Clients_Europe_Du_Nord
 ADD CONSTRAINT CK_Code_Clients_Europe_Du_Nord
 CHECK (CODE_CLIENT LIKE '0%');
