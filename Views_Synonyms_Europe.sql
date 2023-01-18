@@ -1,28 +1,28 @@
 CREATE OR REPLACE SYNONYM Clients_Europe_Du_Sud 
 FOR mvieiraper.Clients_Europe_Du_Sud@L_Ameriques;
 
-CREATE SYNONYM Clients_Ameriques
+CREATE OR REPLACE SYNONYM Clients_Ameriques
 FOR mvieiraper.Clients_Amerique@L_Ameriques;
 
-CREATE SYNONYM Commandes_Europe_Du_Sud
+CREATE OR REPLACE SYNONYM Commandes_Europe_Du_Sud
 FOR mvieiraper.Commandes_Europe_Du_Sud@L_Ameriques;
 
-CREATE SYNONYM Commandes_Ameriques
+CREATE OR REPLACE SYNONYM Commandes_Ameriques
 FOR mvieiraper.Commandes_Amerique@L_Ameriques;
 
-CREATE SYNONYM Details_Commandes_Europe_Du_Sud
+CREATE OR REPLACE SYNONYM Details_Commandes_Europe_Du_Sud
 FOR mvieiraper.Details_Commandes_Europe_Du_Sud@L_Ameriques;
 
-CREATE SYNONYM Details_Commandes_Ameriques
-FOR mvieiraper.Details_Commandes_Ameriques@L_Ameriques;
+CREATE OR REPLACE SYNONYM Details_Commandes_Ameriques
+FOR mvieiraper.Details_Commandes_Amerique@L_Ameriques;
 
-CREATE SYNONYM Stock_Europe_Du_Sud
+CREATE OR REPLACE SYNONYM Stock_Europe_Du_Sud
 FOR mvieiraper.Stock_Europe_Du_Sud@L_Ameriques;
 
-CREATE SYNONYM Stock_Ameriques
+CREATE OR REPLACE SYNONYM Stock_Ameriques
 FOR mvieiraper.Stock_Amerique@L_Ameriques;
 
-CREATE SYNONYM Employes
+CREATE OR REPLACE SYNONYM Employes
 FOR mvieiraper.Employes@L_Ameriques;
 
 CREATE OR REPLACE VIEW Clients AS
