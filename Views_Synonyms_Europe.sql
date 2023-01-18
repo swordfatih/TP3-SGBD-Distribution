@@ -1,26 +1,26 @@
 CREATE SYNONYM Clients_Europe_Du_Sud 
-FOR mvieiraper.Clients_Europe_Du_Sud;
+FOR mvieiraper.Clients_Europe_Du_Sud@L_Ameriques;
 
 CREATE SYNONYM Clients_Ameriques
-FOR mvieiraper.Clients_Ameriques;
+FOR mvieiraper.Clients_Ameriques@L_Ameriques;
 
 CREATE SYNONYM Commandes_Europe_Du_Sud
-FOR mvieiraper.Commandes_Europe_Du_Sud;
+FOR mvieiraper.Commandes_Europe_Du_Sud@L_Ameriques;
 
 CREATE SYNONYM Commandes_Ameriques
-FOR mvieiraper.Commandes_Ameriques;
+FOR mvieiraper.Commandes_Ameriques@L_Ameriques;
 
 CREATE SYNONYM Details_Commandes_Europe_Du_Sud
-FOR mvieiraper.Details_Commandes_Europe_Du_Sud;
+FOR mvieiraper.Details_Commandes_Europe_Du_Sud@L_Ameriques;
 
 CREATE SYNONYM Details_Commandes_Ameriques
-FOR mvieiraper.Details_Commandes_Ameriques;
+FOR mvieiraper.Details_Commandes_Ameriques@L_Ameriques;
 
 CREATE SYNONYM Stock_Europe_Du_Sud
-FOR mvieiraper.Stock_Europe_Du_Sud;
+FOR mvieiraper.Stock_Europe_Du_Sud@L_Ameriques;
 
 CREATE SYNONYM Stock_Ameriques
-FOR mvieiraper.Stock_Ameriques;
+FOR mvieiraper.Stock_Ameriques@L_Ameriques;
 
 CREATE OR REPLACE VIEW Clients AS
     SELECT * 
